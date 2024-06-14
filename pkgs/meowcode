@@ -1,1 +1,3 @@
-a
+#!/bin/bash
+chmod +x meowcode
+sudo mv meowcode /usr/local/bin
