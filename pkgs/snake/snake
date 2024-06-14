@@ -1,5 +1,7 @@
 #!/bin/bash
 
-git clone https://github.com/Thoq-jar/Snake.git
+rm -rf snake
+git clone https://github.com/Thoq-jar/Snake.git > /dev/null 2>&1
 cd Snake
-java -jar Snake.jar
+java -jar Snake.jar 
+cd ..
