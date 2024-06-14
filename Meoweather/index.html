@@ -1,0 +1,430 @@
+<!DOCTYPE html>
+<style type="text/css">
+body {
+    user-select: none;
+    font-family: sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #000000;
+    color: #fff;
+}
+
+.container {
+    max-width: 600px;
+    margin: 50px auto;
+    text-align: center;
+}
+
+h1 {
+    color: #fff;
+    font-size: 50px;
+}
+
+.search-container {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 20px;
+}
+
+input[type="text"] {
+    padding: 10px;
+    width: 350px;
+    border-radius: 5px;
+    border: 3px solid #fff;
+    background-color: #000000;
+    color: #fff;
+    transition: 0.5s ease-in-out;
+    font-size: 20px;
+}
+
+    input[type="text"]:hover {
+        background-color: #fff;
+        color: #000;
+        width: 400px;
+        transition: background-color 0.3s ease-in-out;
+        transition: width 0.5s ease-in-out;
+    }
+
+    input[type="text"]:focus {
+        width: 450px;
+        outline: none;
+        transition: width 0.5s ease-in-out;
+    }
+
+.searchButton {
+    font-size: 20px;
+    font-family: sans-serif;
+    width: 10%;
+    padding: 10px 20px;
+    border: 3px solid #fff;
+    background-color: #000000;
+    color: #fff;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: 0.3s ease-in-out;
+}
+
+    .searchButton:hover {
+        background-color: #fff;
+        color: #000;
+    }
+
+#weatherInfo {
+    border: 4px solid #fff;
+    padding: 20px;
+    border-radius: 5px;
+    background-color: #000000;
+    transition: 0.3s ease-in-out;
+}
+
+    #weatherInfo:hover {
+        color: #000;
+        background-color: #fff;
+    }
+
+.temperature {
+    font-size: 24px;
+    font-weight: bold;
+    color: #007200;
+}
+
+@media (max-width: 768px) {
+    body {
+        transform: scale(0.85);
+    }
+
+    .searchButton {
+        margin-left: 10px;
+        padding: 10px 30px 10px 10px;
+    }
+    
+    input[type="text"] {
+    padding: 10px;
+    width: 190px;
+    border-radius: 5px;
+    border: 3px solid #fff;
+    background-color: #000000;
+    color: #fff;
+    transition: background-color 0.3s ease-in-out;
+    transition: width 0.5s ease-in-out;    
+    font-size: 20px;
+}
+
+    input[type="text"]:focus {
+        width: 260px;
+        outline: none;
+    }
+}
+
+html {
+    color: #222;
+    font-size: 1em;
+    line-height: 1.4;
+}
+
+::-moz-selection {
+    background: #b3d4fc;
+    text-shadow: none;
+}
+
+::selection {
+    background: #b3d4fc;
+    text-shadow: none;
+}
+
+hr {
+    display: block;
+    height: 1px;
+    border: 0;
+    border-top: 1px solid #ccc;
+    margin: 1em 0;
+    padding: 0;
+}
+
+audio,
+canvas,
+iframe,
+img,
+svg,
+video {
+    vertical-align: middle;
+}
+
+fieldset {
+    border: 0;
+    margin: 0;
+    padding: 0;
+}
+
+textarea {
+    resize: vertical;
+}
+
+.hidden,
+[hidden] {
+    display: none !important;
+}
+
+.visually-hidden {
+    border: 0;
+    clip: rect(0, 0, 0, 0);
+    height: 1px;
+    margin: -1px;
+    overflow: hidden;
+    padding: 0;
+    position: absolute;
+    white-space: nowrap;
+    width: 1px;
+}
+
+
+    .visually-hidden.focusable:active,
+    .visually-hidden.focusable:focus {
+        clip: auto;
+        height: auto;
+        margin: 0;
+        overflow: visible;
+        position: static;
+        white-space: inherit;
+        width: auto;
+    }
+
+.invisible {
+    visibility: hidden;
+}
+
+.clearfix::before,
+.clearfix::after {
+    content: "";
+    display: table;
+}
+
+.clearfix::after {
+    clear: both;
+}
+
+@media only screen and (min-width: 35em) {
+}
+
+@media print, (-webkit-min-device-pixel-ratio: 1.25), (min-resolution: 1.25dppx), (min-resolution: 120dpi) {
+}
+
+
+@media print {
+    *,
+    *::before,
+    *::after {
+        background: #fff !important;
+        color: #000 !important;
+        box-shadow: none !important;
+        text-shadow: none !important;
+    }
+
+    a,
+    a:visited {
+        text-decoration: underline;
+    }
+
+        a[href]::after {
+            content: " (" attr(href) ")";
+        }
+
+    abbr[title]::after {
+        content: " (" attr(title) ")";
+    }
+
+    a[href^="#"]::after,
+    a[href^="javascript:"]::after {
+        content: "";
+    }
+
+    pre {
+        white-space: pre-wrap !important;
+    }
+
+    pre,
+    blockquote {
+        border: 1px solid #999;
+        page-break-inside: avoid;
+    }
+
+    tr,
+    img {
+        page-break-inside: avoid;
+    }
+
+    h2,
+    h3 {
+        page-break-after: avoid;
+    }
+}
+</style>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Meoweather</title>
+  <link rel="stylesheet" href="css/styles.css">
+   <link rel="icon" type="image/x-icon" href="favicon.ico">
+</head>
+<body>
+<div class="container">
+  <h1 class="title">Meoweather</h1>
+  <div class="search-container">
+    <input type="text" id="cityInput" placeholder="Enter city name">
+    <div id="searchButton" class="searchButton">Search</div>
+  </div>
+  <div id="weatherInfo"></div>
+</div>
+<script>
+    document.addEventListener("DOMContentLoaded", () => {
+    const weatherInfo = document.getElementById("weatherInfo");
+    const searchButton = document.getElementById("searchButton");
+    const cityInput = document.getElementById("cityInput");
+
+    async function getUserLocationAndFetchWeather() {
+        if ("geolocation" in navigator) {
+            try {
+                navigator.geolocation.getCurrentPosition(
+                    async (position) => {
+                        const { latitude, longitude } = position.coords;
+                        fetchWeather(null, latitude, longitude);
+                        setInterval(async () => {
+                            fetchWeather(null, latitude, longitude);
+                            console.log("Reloading...")
+                            window.location.reload();
+                        }, 600000);
+                    },
+                    () => {
+                        showError("Unable to access geolocation. Please enable location services.");
+                    },
+                    { enableHighAccuracy: true, timeout: 5000, maximumAge: 0 }
+                );
+            } catch (error) {
+                console.error("Error accessing geolocation:", error);
+                showError("Error accessing geolocation. Please try again later.");
+            }
+        } else {
+            showError("Geolocation is not supported by this browser.");
+        }
+    }
+
+    async function fetchWeather(city, lat, lon) {
+        try {
+            const apiKey = "36496bad1955bf3365448965a42b9eac";
+            let apiUrl;
+            if (city) {
+                apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=imperial`;
+            } else if (lat && lon) {
+                apiUrl = `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=${apiKey}&units=imperial`;
+            } else {
+                throw new Error("City name required.");
+            }
+            const response = await fetch(apiUrl);
+            const data = await response.json();
+            if (response.ok) {
+                displayWeather(data, lat, lon);
+            } else {
+                showError(data.message);
+            }
+        } catch (error) {
+            console.warn("Error fetching weather data:", error);
+            showError("Error fetching weather data. Please try again later.");
+        }
+    }
+
+    function capitalizeFirstLetterOfEachWord(str) {
+        return str.split(' ').map(word => word.charAt(0).toUpperCase() + word.slice(1)).join(' ');
+    }
+
+   async function displayWeather(data, lat, lon) {
+    const cityName = data.name;
+    const temperature = data.main.temp;
+    const humidity = data.main.humidity;
+    const description = capitalizeFirstLetterOfEachWord(data.weather[0].description);
+
+       
+    if (lat != null && lon != null) {
+        const weatherHTML = `
+          <h2>${cityName}</h2>
+          <p class="temperature">${temperature}°F</p>
+          <p>Humidity: ${humidity}%</p>
+          <p>Condition: ${description}</p>
+          <p>Latitude: ${lat}</p>
+          <p>Longitude: ${lon}</p>
+        `;
+        weatherInfo.innerHTML = weatherHTML;
+    } else {
+        const weatherHTML = `
+          <h2>${cityName}</h2>
+          <p class="temperature">${temperature}°F</p>
+          <p>Humidity: ${humidity}%</p>
+          <p>Condition: ${description}</p>
+        `;
+        weatherInfo.innerHTML = weatherHTML;
+    }
+ }
+
+    function showError(message) {
+        weatherInfo.innerHTML = `<p>API Error: ${message}</p>`;
+        console.warn(`API Error: ${message}`)
+    }
+
+    getUserLocationAndFetchWeather();
+
+    searchButton.addEventListener("click", () => {
+        const city = cityInput.value.trim();
+        if (city !== "") {
+            fetchWeather(city);
+        } else {
+            alert("Please enter a city name.");
+        }
+    });
+
+    function parseCoordinates(inputString) {
+        const regex = /(\d+\.\d+)°\s([NS])\s*,\s*(\d+\.\d+)°\s([EW])/;
+        const match = inputString.match(regex);
+        if (match) {
+            const lat = parseFloat(match[1]);
+            const latDir = match[2];
+            const lon = parseFloat(match[3]);
+            const lonDir = match[4];
+            return { lat, lon, latDir, lonDir };
+        }
+        return null;
+    }
+
+    searchButton.addEventListener("click", async () => {
+        let city = cityInput.value.trim();
+        if (city === "") {
+            return;
+        }
+        const parsedCoordinates = parseCoordinates(city);
+        if (parsedCoordinates) {
+            fetchWeather(parsedCoordinates.lat, parsedCoordinates.lon);
+        } else {
+            fetchWeather(city);
+        }
+    });
+
+    getUserLocationAndFetchWeather();
+});
+
+window.onload = () => {
+    window.electron.receiveLocation((coords, errorMessage) => {
+        if (coords) {
+            console.log('Location received:', coords);
+            alert(`Location received:\nLatitude: ${coords.latitude}\nLongitude: ${coords.longitude}`);
+        } else {
+            console.error('Location access error:', errorMessage);
+            alert(`Location access error: ${errorMessage}`);
+        }
+    });
+};
+
+function requestLocationAccess() {
+    window.electron.requestLocationAccess();
+}
+</script>
+</body>
+</html>
