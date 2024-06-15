@@ -84,7 +84,7 @@ if [[ "$1" == "-v" ]]; then
     exit 0
 fi
 
-if [[ "$1" == "-v" ]]; then
+if [[ "$1" == "-u" ]]; then
     update
     exit 0
 fi
