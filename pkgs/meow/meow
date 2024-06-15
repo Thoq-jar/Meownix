@@ -51,7 +51,7 @@ function install_program() {
     sudo curl -L -o "/usr/local/bin/$program_name" "https://raw.githubusercontent.com/Thoq-jar/Meownix/main/pkgs/$program_name/$program_name" > /dev/null 2>&1
     local curl_exit_code=$?
     if [[ $curl_exit_code -eq 0 ]]; then
-        chmod +x "/usr/local/bin/$program_name"
+        sudo chmod +x "/usr/local/bin/$program_name"
         echo "Installed $program_name from Meow."
         echo "To run, type $program_name into terminal!"
     else
@@ -63,7 +63,7 @@ function install_program() {
 function remove_program() {
     local program_name="$1"
     if [[ -f "/usr/local/bin/$program_name" ]]; then
-        rm "/usr/local/bin/$program_name"
+        sudo rm "/usr/local/bin/$program_name"
         echo "Removed $program_name."
     else
         echo "$program_name is not installed via Meow!"
