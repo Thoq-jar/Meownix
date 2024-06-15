@@ -47,44 +47,25 @@ function check_args() {
 }
 
 function show_loading() {
+    local pid=$1
     local delay=0.1
-    local count=0
-    local direction=1
-    local max_count=7
-    local progress="[       ]"
+    local spin='-\|/'
+    local i=0
 
-    while true; do
-        local position=$((count % (max_count * 2)))
-        local index=$((position < max_count ? position : max_count * 2 - position))
-
-        local prefix="${progress:0:1}"
-        local suffix="${progress:2:7}"
-
-        progress="[$(printf '%*s' "$index" '#' | tr ' ' '#')$(printf '%*s' "$((max_count - index))" ' ')]"
-        echo -ne "\r$prefix$progress$suffix"
-
+    echo -n "Loading... "
+    while ps -p $pid > /dev/null; do
+        local char=${spin:i++%${#spin}:1}
+        echo -ne "\r$char"
         sleep $delay
-
-        if (( position == 0 || position == max_count )); then
-            direction=$(( -direction ))
-        fi
-
-        count=$(( count + direction ))
     done
-}
-
-function stop_loading() {
-    echo -ne "\r"
-    echo "                    "
+    echo ""
 }
 
 function install_program() {
-    show_loading &
     local program_name="$1"
+    show_loading $!
     sudo curl -L -o "/usr/local/bin/$program_name" "https://raw.githubusercontent.com/Thoq-jar/Meownix/main/pkgs/$program_name/$program_name" > /dev/null 2>&1
     local curl_exit_code=$?
-    local curl_exit_code=$?
-    stop_loading
     if [[ $curl_exit_code -eq 0 ]]; then
         sudo chmod +x "/usr/local/bin/$program_name"
         echo "Installed $program_name from Meow."
