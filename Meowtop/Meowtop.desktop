@@ -1,9 +1,9 @@
 [Desktop Entry]
-Name=Prism 3
-Comment=This session logs you into the Prism DE
+Name=Meowtop
+Comment=This session logs you into the Meowtop DE
 Exec=env GNOME_SHELL_SESSION_MODE=ubuntu /usr/bin/gnome-session --session=ubuntu
 TryExec=/usr/bin/gnome-shell
 Type=Application
-DesktopNames=Prism
+DesktopNames=Meowtop
 X-GDM-SessionRegisters=true
-X-Ubuntu-Gettext-Domain=Prism-3
+X-Ubuntu-Gettext-Domain=Meowtop
