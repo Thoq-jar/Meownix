@@ -52,10 +52,10 @@ function show_loading() {
     local spin='-\|/'
     local i=0
 
-    echo -n "Loading... "
+    echo -n "[ ] Downloading $2 from Meow... "
     while ps -p $pid > /dev/null; do
         local char=${spin:i++%${#spin}:1}
-        echo -ne "\r$char"
+        echo -ne "\r[$char] Downloading $2 from Meow... "
         sleep $delay
     done
     echo ""
@@ -63,8 +63,8 @@ function show_loading() {
 
 function install_program() {
     local program_name="$1"
-    show_loading $!
-    sudo curl -L -o "/usr/local/bin/$program_name" "https://raw.githubusercontent.com/Thoq-jar/Meownix/main/pkgs/$program_name/$program_name" > /dev/null 2>&1
+    sudo curl -fsSL -o "/usr/local/bin/$program_name" "https://raw.githubusercontent.com/Thoq-jar/Meownix/main/pkgs/$program_name/$program_name" > /dev/null 2>&1 &
+    show_loading $! "$program_name"
     local curl_exit_code=$?
     if [[ $curl_exit_code -eq 0 ]]; then
         sudo chmod +x "/usr/local/bin/$program_name"
