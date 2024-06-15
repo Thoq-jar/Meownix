@@ -1,5 +1,4 @@
 echo "Welcome to Meowtop"
-echo "Developed by Tristan"
 
 echo "Installing files..."
 sudo mkdir /usr/bin/Meowtop
