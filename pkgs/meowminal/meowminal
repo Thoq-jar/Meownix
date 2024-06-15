@@ -1,6 +1,6 @@
 #!/bin/bash
 
-python3 <<END_PYTHON_CODE
+python3 > /dev/null 2>&1 <<END_PYTHON_CODE
 #!/usr/bin/env python3
 
 import gi
@@ -76,4 +76,4 @@ def main():
 
 if __name__ == "__main__":
     main()
-END_PYTHON_CODE > /dev/null 2>&1
+END_PYTHON_CODE
