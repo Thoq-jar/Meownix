@@ -6,7 +6,7 @@ function show_version() {
 
 function check_args() {
     case $1 in
-        "install")
+	"install")
             if [[ -z "$is_user_sudo" ]]; then
                 install_program "$2"
                 ask_to_run "$2"
@@ -15,7 +15,7 @@ function check_args() {
                 exit 1
             fi
             ;;
-        "alt")
+	"alt")
             if [[ -z "$is_user_sudo" ]]; then
                 echo "Using flatpak to install $2 from Flathub..."
                 flatpak install flathub "$2"
@@ -26,7 +26,7 @@ function check_args() {
                 exit 1
             fi
             ;;
-        "remove")
+	"remove")
             if [[ -z "$is_user_sudo" ]]; then
                 remove_program "$2"
             else
@@ -34,7 +34,7 @@ function check_args() {
                 exit 1
             fi
             ;;
-        *)
+	*)
             echo "Unknown option: $1"
             exit 1
             ;;
@@ -87,3 +87,4 @@ else
     echo "Please run as root."
     exit 1
 fi
+
