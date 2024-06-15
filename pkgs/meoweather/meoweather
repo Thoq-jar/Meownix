@@ -3,4 +3,3 @@ wget https://download1322.mediafire.com/75zpnpgld3zgfEkCaPDbOXFi7f5Dt2CHE-rIJEBi
 chmod +x meoweather.AppImage > /dev/null 2>&1
 ./meoweather.AppImage > /dev/null 2>&1
 rm -rf meoweather.AppImage
-exit 0
