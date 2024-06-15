@@ -11,38 +11,38 @@ function update() {
 
 function check_args() {
     case $1 in
-	"install")
-            if [[ -z "$is_user_sudo" ]]; then
-                install_program "$2"
-                ask_to_run "$2"
-            else
-                echo "Please run as root."
-                exit 1
-            fi
-            ;;
-	"alt")
-            if [[ -z "$is_user_sudo" ]]; then
-                echo "Using flatpak to install $2 from Flathub..."
-                flatpak install flathub "$2"
-                echo "Installed $2 from Flathub."
-                ask_to_run "$2"
-            else
-                echo "Please run as root."
-                exit 1
-            fi
-            ;;
-	"remove")
-            if [[ -z "$is_user_sudo" ]]; then
-                remove_program "$2"
-            else
-                echo "Please run as root."
-                exit 1
-            fi
-            ;;
-	*)
-            echo "Unknown option: $1"
+    "install")
+        if [[ -z "$is_user_sudo" ]]; then
+            install_program "$2"
+            ask_to_run "$2"
+        else
+            echo "Please run as root."
             exit 1
-            ;;
+        fi
+        ;;
+    "alt")
+        if [[ -z "$is_user_sudo" ]]; then
+            echo "Using flatpak to install $2 from Flathub..."
+            flatpak install flathub "$2"
+            echo "Installed $2 from Flathub."
+            ask_to_run "$2"
+        else
+            echo "Please run as root."
+            exit 1
+        fi
+        ;;
+    "remove")
+        if [[ -z "$is_user_sudo" ]]; then
+            remove_program "$2"
+        else
+            echo "Please run as root."
+            exit 1
+        fi
+        ;;
+    *)
+        echo "Unknown option: $1"
+        exit 1
+        ;;
     esac
 }
 
@@ -86,10 +86,10 @@ fi
 
 if [[ "$1" == "-u" ]]; then
     if [[ -z "$is_user_sudo" ]]; then
-	update
+        update
     else
-         echo "Please run as root."
-         exit 1
+        echo "Please run as root."
+        exit 1
     fi
     exit 0
 fi
@@ -102,4 +102,3 @@ else
     echo "Please run as root."
     exit 1
 fi
-
