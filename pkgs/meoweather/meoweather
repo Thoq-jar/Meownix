@@ -11,5 +11,4 @@ fi
 
 echo "Download successful. Making meoweather.AppImage executable..."
 chmod +x meoweather.AppImage
-
-echo "
+./meoweather.AppImage
