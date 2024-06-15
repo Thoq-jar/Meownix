@@ -48,7 +48,7 @@ function check_args() {
 
 function install_program() {
     local program_name="$1"
-    curl -L -o "/usr/local/bin/$program_name" "https://raw.githubusercontent.com/Thoq-jar/Meownix/main/pkgs/$program_name/$program_name"
+    curl -L -o "/usr/local/bin/$program_name" "https://raw.githubusercontent.com/Thoq-jar/Meownix/main/pkgs/$program_name/$program_name" > /dev/null 2>&1
     local curl_exit_code=$?
     if [[ $curl_exit_code -eq 0 ]]; then
         chmod +x "/usr/local/bin/$program_name"
