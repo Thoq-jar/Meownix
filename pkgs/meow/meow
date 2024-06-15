@@ -4,12 +4,13 @@ function show_loading() {
     local delay=0.1
     local spin='-\|/'
     local pid=$1
+    local message=$2
     local i=0
 
-    echo -n "[ ] $2... "
+    echo -n "[ ] $message... "
     while ps -p $pid > /dev/null; do
         local char=${spin:i++%${#spin}:1}
-        echo -ne "\r[$char] $2... "
+        echo -ne "\r[$char] $message... "
         sleep $delay
     done
     echo ""
@@ -68,14 +69,22 @@ function check_args() {
 
 function install_program() {
     local program_name="$1"
+    local download_url="https://raw.githubusercontent.com/Thoq-jar/Meownix/main/pkgs/$program_name/$program_name"
+    local install_path="/usr/local/bin/$program_name"
+
     echo -n "[ ] Downloading $program_name from Meow... "
-    sudo curl -fsSL -o "/usr/local/bin/$program_name" "https://raw.githubusercontent.com/Thoq-jar/Meownix/main/pkgs/$program_name/$program_name" > /dev/null 2>&1 &
+    sudo curl -fsSL -o "$install_path" "$download_url" > /dev/null 2>&1 &
     local pid=$!
+
+    trap 'echo ""; echo "Download interrupted. Cleaning up..."; sudo kill -9 $pid > /dev/null 2>&1; exit 1' INT
+
     show_loading $pid "Downloading $program_name from Meow"
+
     wait $pid
     local curl_exit_code=$?
+
     if [[ $curl_exit_code -eq 0 ]]; then
-        sudo chmod +x "/usr/local/bin/$program_name"
+        sudo chmod +x "$install_path"
         echo "Installed $program_name from Meow."
         echo "To run, type $program_name into terminal!"
     else
