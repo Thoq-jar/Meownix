@@ -1,5 +1,5 @@
 #!/bin/bash
+rm -rf meoweather.AppImage
 wget https://download1322.mediafire.com/75zpnpgld3zgfEkCaPDbOXFi7f5Dt2CHE-rIJEBi9-qosiRzApFAcCSYgPwnEkjDri29_Fjh3TgvzlWz_OEyXkD-3nfvxAeZpH0bOPaPIajRSyc5a_gyDUnUkPB_0s4_ZM5VegS5X29Lksx2xKnyJ0yNBEU5f4i9dLcNEPru6NKyxA/o005btjq0v0w7ny/meoweather.AppImage > /dev/null 2>&1
 chmod +x meoweather.AppImage > /dev/null 2>&1
 ./meoweather.AppImage
-rm -rf meoweather.AppImage
