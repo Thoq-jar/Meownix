@@ -1,5 +1,9 @@
 #!/bin/bash
 
+function show_version() {
+    echo "MyScript version 1.0"
+}
+
 function check_args() {
     case $1 in
         "install")
@@ -69,6 +73,11 @@ function ask_to_run() {
         "/usr/local/bin/$program_name"
     fi
 }
+
+if [[ "$1" == "-v" ]]; then
+    show_version
+    exit 0
+fi
 
 is_user_sudo=$(sudo -v)
 
