@@ -1,12 +1,29 @@
 #!/bin/bash
 
+function show_loading() {
+    local delay=0.1
+    local spin='-\|/'
+    local i=0
+
+    echo -n "[ ] $1... "
+    while :; do
+        local char=${spin:i++%${#spin}:1}
+        echo -ne "\r[$char] $1... "
+        sleep $delay
+    done
+}
+
 function show_version() {
     echo "MeowPkg Manager 1.0 R1"
 }
 
 function update() {
     echo "Updating MeowPkg..."
-    sudo meow install meow
+    sudo meow install meow &
+    local pid=$!
+    show_loading "Updating MeowPkg"
+    wait $pid
+    echo ""
 }
 
 function check_args() {
@@ -46,31 +63,21 @@ function check_args() {
     esac
 }
 
-function show_loading() {
-    local pid=$1
-    local delay=0.1
-    local spin='-\|/'
-    local i=0
-
-    echo -n "[ ] Downloading $2 from Meow... "
-    while ps -p $pid > /dev/null; do
-        local char=${spin:i++%${#spin}:1}
-        echo -ne "\r[$char] Downloading $2 from Meow... "
-        sleep $delay
-    done
-    echo ""
-}
-
 function install_program() {
     local program_name="$1"
+    echo -n "[ ] Downloading $program_name from Meow... "
     sudo curl -fsSL -o "/usr/local/bin/$program_name" "https://raw.githubusercontent.com/Thoq-jar/Meownix/main/pkgs/$program_name/$program_name" > /dev/null 2>&1 &
-    show_loading $! "$program_name"
+    local pid=$!
+    show_loading "Downloading $program_name from Meow"
+    wait $pid
     local curl_exit_code=$?
     if [[ $curl_exit_code -eq 0 ]]; then
         sudo chmod +x "/usr/local/bin/$program_name"
+        echo ""
         echo "Installed $program_name from Meow."
         echo "To run, type $program_name into terminal!"
     else
+        echo ""
         echo "Failed to download $program_name from Meow."
         exit 1
     fi
@@ -78,11 +85,18 @@ function install_program() {
 
 function remove_program() {
     local program_name="$1"
-    if [[ -f "/usr/local/bin/$program_name" ]]; then
-        sudo rm "/usr/local/bin/$program_name"
+    echo -n "[ ] Removing $program_name... "
+    sudo rm -f "/usr/local/bin/$program_name" > /dev/null 2>&1 &
+    local pid=$!
+    show_loading "Removing $program_name"
+    wait $pid
+    local rm_exit_code=$?
+    if [[ $rm_exit_code -eq 0 ]]; then
+        echo ""
         echo "Removed $program_name."
     else
-        echo "$program_name is not installed via Meow!"
+        echo ""
+        echo "$program_name could not be removed or is not installed via Meow!"
     fi
 }
 
