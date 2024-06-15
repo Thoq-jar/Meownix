@@ -85,7 +85,12 @@ if [[ "$1" == "-v" ]]; then
 fi
 
 if [[ "$1" == "-u" ]]; then
-    update
+    if [[ -z "$is_user_sudo" ]]; then
+	update
+    else
+         echo "Please run as root."
+         exit 1
+    fi
     exit 0
 fi
 
@@ -97,4 +102,3 @@ else
     echo "Please run as root."
     exit 1
 fi
-
