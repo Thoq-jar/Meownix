@@ -1,9 +1,13 @@
 #!/bin/bash
 
+cd ~
+rm -rf meowtempinstall
+mkdir meowtempinstall
+cd meowtempinstall
 wget https://github.com/Thoq-jar/Meownix/raw/main/pkgs/meowtop/meowtop.zip
 unzip meowtop.zip
-cd meowtop
 chmod +x install.sh
 ./install.sh
 cd ..
 echo "Done! Run meowtopde in terminal or launch it from your login manager!" 
+rm -rf meowtempinstall
