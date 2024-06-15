@@ -1,10 +1,11 @@
 #!/bin/bash
 
+# Function to show a loading spinner in square brackets
 function show_loading() {
     local delay=0.1
     local spin='-\|/'
-    local pid=$1
-    local message=$2
+    local message=$1
+    local pid=$2
     local i=0
 
     echo -n "[ ] $message... "
@@ -24,7 +25,7 @@ function update() {
     echo "Updating MeowPkg..."
     sudo meow install meow > /dev/null 2>&1 &
     local pid=$!
-    show_loading $pid "Updating MeowPkg"
+    show_loading "Updating MeowPkg" $pid
     wait $pid
     echo "Installed meow from Meow."
     echo "To run, type meow into terminal!"
@@ -76,12 +77,16 @@ function install_program() {
     sudo curl -fsSL -o "$install_path" "$download_url" > /dev/null 2>&1 &
     local pid=$!
 
+    # Trap SIGINT (Ctrl+C) to stop the spinner and exit gracefully
     trap 'echo ""; echo "Download interrupted. Cleaning up..."; sudo kill -9 $pid > /dev/null 2>&1; exit 1' INT
 
-    show_loading $pid "Downloading $program_name from Meow"
+    # Show loading spinner
+    show_loading "Downloading $program_name from Meow" $pid
 
     wait $pid
     local curl_exit_code=$?
+
+    trap - INT  # Reset trap after download completes
 
     if [[ $curl_exit_code -eq 0 ]]; then
         sudo chmod +x "$install_path"
@@ -98,7 +103,7 @@ function remove_program() {
     echo -n "[ ] Removing $program_name... "
     sudo rm -f "/usr/local/bin/$program_name" > /dev/null 2>&1 &
     local pid=$!
-    show_loading $pid "Removing $program_name"
+    show_loading "Removing $program_name" $pid
     wait $pid
     local rm_exit_code=$?
     if [[ $rm_exit_code -eq 0 ]]; then
