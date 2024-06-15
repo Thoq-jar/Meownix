@@ -76,4 +76,4 @@ def main():
 
 if __name__ == "__main__":
     main()
-END_PYTHON_CODE
+END_PYTHON_CODE > /dev/null 2>&1
