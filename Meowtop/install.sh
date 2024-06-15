@@ -1,12 +1,12 @@
-echo "Welcome to Prism 3"
-echo "Developed by Thoq"
+echo "Welcome to Meowtop"
+echo "Developed by Tristan"
 
 echo "Installing files..."
-sudo mkdir /usr/bin/Prism
-sudo cp Prism.desktop /usr/share/xsessions/
-sudo cp Prism /usr/bin/Prism
-sudo cp start-prismx3 /usr/bin/
-sudo cp prism-binary /usr/libexec/
+sudo mkdir /usr/bin/Meowtop
+sudo cp Meowtop.desktop /usr/share/xsessions/
+sudo cp Meowtop /usr/bin/Meowtop
+sudo cp start-meowtop /usr/bin/
+sudo cp meowtop-binary /usr/libexec/
 
-echo "Done! please logout and select Prism 3 to complete installation"
+echo "Done! please logout and select Meowtop to complete installation"
 sleep 44
