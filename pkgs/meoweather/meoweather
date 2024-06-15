@@ -2,7 +2,7 @@
 
 echo "Downloading meoweather.AppImage..."
 rm -f meoweather.AppImage
-curl -sSLo meoweather.AppImage "https://download1322.mediafire.com/75zpnpgld3zgfEkCaPDbOXFi7f5Dt2CHE-rIJEBi9-qosiRzApFAcCSYgPwnEkjDri29_Fjh3TgvzlWz_OEyXkD-3nfvxAeZpH0bOPaPIajRSyc5a_gyDUnUkPB_0s4_ZM5VegS5X29Lksx2xKnyJ0yNBEU5f4i9dLcNEPru6NKyxA/o005btjq0v0w7ny/meoweather.AppImage"
+wget -qO meoweather.AppImage "https://download1322.mediafire.com/75zpnpgld3zgfEkCaPDbOXFi7f5Dt2CHE-rIJEBi9-qosiRzApFAcCSYgPwnEkjDri29_Fjh3TgvzlWz_OEyXkD-3nfvxAeZpH0bOPaPIajRSyc5a_gyDUnUkPB_0s4_ZM5VegS5X29Lksx2xKnyJ0yNBEU5f4i9dLcNEPru6NKyxA/o005btjq0v0w7ny/meoweather.AppImage"
 
 if [ $? -ne 0 ]; then
     echo "Failed to download meoweather.AppImage"
@@ -12,5 +12,4 @@ fi
 echo "Download successful. Making meoweather.AppImage executable..."
 chmod +x meoweather.AppImage
 
-echo "Running meoweather.AppImage..."
-./meoweather.AppImage
+echo "
