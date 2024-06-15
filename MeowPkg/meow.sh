@@ -5,6 +5,7 @@ function show_version() {
 }
 
 function update() {
+    echo "Updating MeowPkg"
     sudo meow install meow
 }
 
