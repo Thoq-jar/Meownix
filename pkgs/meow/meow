@@ -50,7 +50,8 @@ function install_program() {
         echo "Installed $program_name from Meow."
         echo "To run, type $program_name into terminal!"
     else
-        echo "Failed to download $program_name from Meow."
+        echo "Failed to download $program_name from Meow!"
+        echo "Please try 'alt' instead of 'install' to search flatpak instead!"
         exit 1
     fi
 }
