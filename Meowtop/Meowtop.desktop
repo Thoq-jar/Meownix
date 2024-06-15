@@ -1,7 +1,7 @@
 [Desktop Entry]
 Name=Meowtop
 Comment=This session logs you into the Meowtop DE
-Exec=env GNOME_SHELL_SESSION_MODE=ubuntu /usr/bin/gnome-session --session=ubuntu
+Exec=env GNOME_SHELL_SESSION_MODE=ubuntu /usr/bin/gnome-session
 TryExec=/usr/bin/gnome-shell
 Type=Application
 DesktopNames=Meowtop
