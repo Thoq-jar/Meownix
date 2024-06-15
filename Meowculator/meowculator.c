@@ -40,7 +40,7 @@ int main() {
             break;
         case 3: // Multiplication (attempt 3)
             __asm__(
-                "imull %1, %0;"   // Multiply x (operand 0) by y (operand 1) // sublime text
+                "imull %1, %0;"   // Multiply x (operand 0) by y (operand 1) i like sublime text
                 : "=r" (result)   // Output operand: result, "=" denotes write-only like a bitch
                 : "0" (x), "r" (y) // x and y, wanan go to xy: i wasted your time reading this it isnt funny at all no joke fuck off
             );
