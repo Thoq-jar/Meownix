@@ -4,6 +4,10 @@ function show_version() {
     echo "MeowPkg Manager 1.0 R1"
 }
 
+function update() {
+    sudo meow install meow
+}
+
 function check_args() {
     case $1 in
 	"install")
@@ -76,6 +80,11 @@ function ask_to_run() {
 
 if [[ "$1" == "-v" ]]; then
     show_version
+    exit 0
+fi
+
+if [[ "$1" == "-v" ]]; then
+    update
     exit 0
 fi
 
