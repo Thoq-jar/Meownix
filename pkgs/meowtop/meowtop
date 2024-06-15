@@ -9,5 +9,5 @@ unzip meowtop.zip
 chmod +x install.sh
 ./install.sh
 cd ..
-echo "Done! Run meowtopde in terminal or launch it from your login manager!" 
+echo "Done! Run start-meowtop in terminal or launch it from your login manager!" 
 rm -rf meowtempinstall
