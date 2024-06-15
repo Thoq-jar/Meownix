@@ -1,0 +1,9 @@
+[Desktop Entry]
+Name=Prism 3
+Comment=This session logs you into the Prism DE
+Exec=env GNOME_SHELL_SESSION_MODE=ubuntu /usr/bin/gnome-session --session=ubuntu
+TryExec=/usr/bin/gnome-shell
+Type=Application
+DesktopNames=Prism
+X-GDM-SessionRegisters=true
+X-Ubuntu-Gettext-Domain=Prism-3
