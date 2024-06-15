@@ -1,7 +1,7 @@
 #!/bin/bash
 
 function show_version() {
-    echo "MyScript version 1.0"
+    echo "MeowPkg Manager 1.0 R1"
 }
 
 function check_args() {
