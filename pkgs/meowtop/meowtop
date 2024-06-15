@@ -5,3 +5,4 @@ cd meowtop
 chmod +x install.sh
 ./install.sh
 cd ..
+echo "Done! Run meowtopde in terminal or launch it from your login manager!" 
