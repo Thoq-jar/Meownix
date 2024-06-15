@@ -1,6 +1,5 @@
 #!/bin/bash
 
-# Function to show a loading spinner in square brackets
 function show_loading() {
     local delay=0.1
     local spin='-\|/'
@@ -77,16 +76,14 @@ function install_program() {
     sudo curl -fsSL -o "$install_path" "$download_url" > /dev/null 2>&1 &
     local pid=$!
 
-    # Trap SIGINT (Ctrl+C) to stop the spinner and exit gracefully
     trap 'echo ""; echo "Download interrupted. Cleaning up..."; sudo kill -9 $pid > /dev/null 2>&1; exit 1' INT
 
-    # Show loading spinner
     show_loading "Downloading $program_name from Meow" $pid
 
     wait $pid
     local curl_exit_code=$?
 
-    trap - INT  # Reset trap after download completes
+    trap - INT
 
     if [[ $curl_exit_code -eq 0 ]]; then
         sudo chmod +x "$install_path"
