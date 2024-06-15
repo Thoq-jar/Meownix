@@ -7,7 +7,6 @@ function show_loading() {
     local pid=$2
     local i=0
 
-    echo -n "[ ] $message... "
     while ps -p $pid > /dev/null; do
         local char=${spin:i++%${#spin}:1}
         echo -ne "\r[$char] $message... "
