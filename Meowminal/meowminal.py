@@ -1,0 +1,67 @@
+#!/usr/bin/env python3
+
+import gi
+gi.require_version('Gtk', '3.0')
+gi.require_version('Vte', '2.91')
+from gi.repository import Gtk, Vte, GLib, Gdk
+
+class TerminalWindow(Gtk.Window):
+
+    def __init__(self):
+        Gtk.Window.__init__(self, title="Meowminal")
+        self.set_default_size(1200, 700)
+        self.connect("destroy", Gtk.main_quit)
+
+        self.terminal = Vte.Terminal()
+        self.terminal.connect("child-exited", self.on_terminal_exit)
+
+        css = """
+        VteTerminal {
+            background-color: #292D3E;
+            color: #FFFFFF;
+        }
+        """
+        style_provider = Gtk.CssProvider()
+        style_provider.load_from_data(css.encode())
+
+        context = self.terminal.get_style_context()
+        context.add_provider(
+            style_provider,
+            Gtk.STYLE_PROVIDER_PRIORITY_APPLICATION
+        )
+
+        scroll = Gtk.ScrolledWindow()
+        scroll.set_hexpand(True)
+        scroll.set_vexpand(True)
+        scroll.add(self.terminal)
+
+        grid = Gtk.Grid()
+        grid.attach(scroll, 0, 0, 1, 1)
+        self.add(grid)
+
+        self.spawn_terminal()
+
+    def spawn_terminal(self):
+        command = ['/bin/bash']
+
+        self.terminal.spawn_sync(
+            Vte.PtyFlags.DEFAULT,
+            None,
+            command,
+            [],
+            GLib.SpawnFlags.DO_NOT_REAP_CHILD,
+            None,
+            None,
+        )
+
+    def on_terminal_exit(self, terminal):
+        Gtk.main_quit()
+
+def main():
+    Gtk.init(None)
+    app = TerminalWindow()
+    app.show_all()
+    Gtk.main()
+
+if __name__ == "__main__":
+    main()
