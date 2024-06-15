@@ -15,11 +15,9 @@ class TerminalWindow(Gtk.Window):
         self.set_default_size(1200, 700)
         self.connect("destroy", Gtk.main_quit)
 
-        # Create a Vte terminal widget
         self.terminal = Vte.Terminal()
         self.terminal.connect("child-exited", self.on_terminal_exit)
 
-        # Set terminal colors using CSS
         css = """
         VteTerminal {
             background-color: #292D3E;
@@ -29,32 +27,26 @@ class TerminalWindow(Gtk.Window):
         style_provider = Gtk.CssProvider()
         style_provider.load_from_data(css.encode())
 
-        # Apply CSS to the terminal widget
         context = self.terminal.get_style_context()
         context.add_provider(
             style_provider,
             Gtk.STYLE_PROVIDER_PRIORITY_APPLICATION
         )
 
-        # Create a terminal scroll container
         scroll = Gtk.ScrolledWindow()
         scroll.set_hexpand(True)
         scroll.set_vexpand(True)
         scroll.add(self.terminal)
 
-        # Create a main layout
         grid = Gtk.Grid()
         grid.attach(scroll, 0, 0, 1, 1)
         self.add(grid)
 
-        # Spawn bash shell in the terminal
         self.spawn_terminal()
 
     def spawn_terminal(self):
-        # Set the command to run in the terminal
         command = ['/bin/bash']
 
-        # Spawn the terminal with the command
         self.terminal.spawn_sync(
             Vte.PtyFlags.DEFAULT,
             None,
