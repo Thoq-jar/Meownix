@@ -90,6 +90,8 @@ function install_program() {
         echo "Installed $program_name from Meow."
         echo "To run, type $program_name into terminal!"
     else
+        echo "Failed to download!"
+        echo "Trying another server..."
         flatpak remote-add --if-not-exists flathub https://dl.flathub.org/repo/flathub.flatpakrepo
         sudo flatpak install $program_name
 
