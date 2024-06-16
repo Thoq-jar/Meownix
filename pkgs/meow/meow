@@ -43,6 +43,7 @@ function check_args() {
     "alt")
         if [[ -z "$is_user_sudo" ]]; then
             echo "Using flatpak to install $2 from Flathub..."
+            flatpak remote-add --if-not-exists flathub https://dl.flathub.org/repo/flathub.flatpakrepo
             flatpak install flathub "$2"
             echo "Installed $2 from Flathub."
             ask_to_run "$2"
@@ -89,8 +90,16 @@ function install_program() {
         echo "Installed $program_name from Meow."
         echo "To run, type $program_name into terminal!"
     else
-        echo "Failed to download $program_name from Meow."
-        exit 1
+        flatpak remote-add --if-not-exists flathub https://dl.flathub.org/repo/flathub.flatpakrepo
+        sudo flatpak install $program_name
+
+        if [[ $? -eq 0 ]]; then
+            echo "Installed $program_name from Meow."
+            echo "To run, type $program_name into terminal!"
+        else
+            echo "Failed to install $program_name using Meow."
+            exit 1
+        fi
     fi
 }
 
