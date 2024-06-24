@@ -2,6 +2,7 @@
 
 cd ~
 echo "Updating..."
+rm -rf meowvim.jar
 wget https://github.com/Thoq-jar/Meownix/raw/main/pkgs/meowvim/meowvim.jar
 java -jar meowvim.jar
 cd ~
