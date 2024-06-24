@@ -1,6 +1,6 @@
 #!/bin/bash
 
 cd ~
-wget > /dev/null 2>&1
+wget https://github.com/Thoq-jar/Meownix/raw/main/pkgs/meowvim/meowvim.jar > /dev/null 2>&1
 java -jar meowvim.jar
 cd ~
