@@ -1,7 +1,6 @@
 #!/bin/bash
 
 cd ~
-
 wget
-
 java -jar meowvim.jar
+cd ~
