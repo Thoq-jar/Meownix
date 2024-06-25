@@ -55,7 +55,7 @@ public class Main {
                 logger.err("Error opening file: " + e.getMessage());
             }
         }
-
+        
         try {
             Terminal terminal = terminalFactory.createTerminal();
             screen = new TerminalScreen(terminal);
