@@ -2,6 +2,7 @@
 
 cd ~ > /dev/null 2>&1
 rm -rf notes.jar > /dev/null 2>&1
+echo "Updating..."
 wget https://github.com/Thoq-jar/Meownix/raw/main/pkgs/notes/notes.jar > /dev/null 2>&1
 java -jar notes.jar
 cd ~ > /dev/null 2>&1
