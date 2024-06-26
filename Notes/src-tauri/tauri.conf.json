@@ -1,0 +1,39 @@
+{
+  "build": {
+    "devPath": "../src",
+    "distDir": "../src",
+    "withGlobalTauri": true
+  },
+  "package": {
+    "productName": "notes",
+    "version": "1.0.0"
+  },
+  "tauri": {
+    "allowlist": {
+      "all": false,
+      "shell": {
+        "all": false,
+        "open": true
+      }
+    },
+    "windows": [
+      {
+        "title": "notes",
+        "width": 1600,
+        "height": 900
+      }
+    ],
+    "security": {
+      "csp": null
+    },
+    "bundle": {
+      "active": true,
+      "targets": "all",
+      "identifier": "org.meownix.notes",
+      "icon": [
+        "icons/128x128.png",
+        "icons/icon.icns"
+      ]
+    }
+  }
+}
