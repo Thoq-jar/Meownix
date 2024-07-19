@@ -3,6 +3,37 @@
 Original repo:
 https://github.com/Dimev/mininotes
 
+# Keybinds:
+- Arrow keys: move cursor
+
+- Ctrl+arrow keys: move cursor, and skip past words (the first whitespace after a non-whitespace character)
+
+- Shift+arrow keys: move cursor, and add selection
+
+- Ctrl+c: copy selection
+
+- Ctrl+v: paste selection
+
+- Ctrl+x: cut selection
+
+- Alt+c: copy selection to system clipboard
+
+- Alt+v: paste selection from system clipboard
+
+- Alt+x: cut selection to system clipboard
+
+- Ctrl+z: undo change
+
+- Ctrl+y: redo change
+
+- Alt+d: discard changes since last save
+
+- Ctrl+s: save changes to file
+
+- Alt+q: quit (does not ask for confirmation)
+
+
+
 Liscense MIT:
 
 ```
